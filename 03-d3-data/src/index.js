@@ -50,4 +50,38 @@ function displayOnDom(datas) {
             return "Best writer : " + datas[maxIndex].nom_utilisateur;
         });
 
+
+    const chart = d3.select("#content")
+        .append("svg")
+        .append("g");
+
+    datas.forEach(element => chart.append("g").append("rect"));
+
+
+
+    const factor = 8;
+    const widthRect = 20;
+
+    chart.selectAll("rect")
+        .data(datas)
+        .attr('x', (d, i) => widthRect * i)
+        .attr('y', (d) => {
+            return 100 - factor * d.posts.length;
+        })
+        .attr('width', widthRect)
+        .attr('height', (d) => factor * d.posts.length)
+        .attr('stroke', 'black')
+        .attr('fill', '#69a3b2');
+
+    chart.selectAll("g")
+        .data(datas)
+        .append("text")
+        .attr('x', (d, i) => widthRect * i)
+        .attr('y', (d) => {
+            return 100 + 20;
+        })
+        .text(function(d) {
+            return d.posts.length;
+        });
+
 }
