@@ -33,7 +33,6 @@ function displayOnDom(datas) {
         .enter()
         .append("p")
         .text(function(d) {
-            console.log(d);
             return d.nom_utilisateur + " : " + d.posts.length;
         });
 
