@@ -47,26 +47,17 @@ const datas = [20, 5, 25, 8, 15];
 
 const chart = svg.append("g").attr("transform", "translate(0,300)");
 
-datas.forEach(element => {
-    chart.append("rect");
-});
+datas.forEach(element => chart.append("rect"));
 
 const factor = 8;
 const widthRect = 20;
 
 chart.selectAll("rect")
     .data(datas)
-    .attr('x', function(d, i) {
-        console.log(i);
-        return widthRect * i;
-    })
-    .attr('y', function(d) {
-        return 100 - factor * d;
-    })
+    .attr('x', (d, i) => widthRect * i)
+    .attr('y', (d) => 100 - factor * d)
     .attr('width', widthRect)
-    .attr('height', function(d) {
-        return factor * d;
-    })
+    .attr('height', (d) => factor * d)
     .attr('stroke', 'black')
     .attr('fill', '#69a3b2');
 /* .enter()
