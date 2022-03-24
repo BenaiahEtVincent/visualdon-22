@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,29 +10,105 @@
     <script src="js/script.js" async></script>
 
     <title>1-SVG</title>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <h1>Dessiner des formes</h1>
     <h2>Rectangle</h2>
 
+    <svg>
+      <rect x="10" y="10" width="400" height="100" stroke="none" fill="red" stroke-width="5"/>
+    </svg>
+
     <h2>Donut</h2>
+
+    <svg>
+      <circle cx="50" cy="50" r="60" stroke="black" fill="transparent" stroke-width="5" />
+      <circle cx="50" cy="50" r="30" stroke="black" fill="transparent" stroke-width="5" />
+
+    </svg>
 
 
     <h2>Ligne</h2>
 
+    <svg>
+      <line x1="20" x2="31.92" y1="50" y2="108.8" stroke="orange" stroke-width="5"/>
+    </svg>
+
 
     <h2>Path</h2>
+
+    <svg width="1000">
+      <path  d="M10 10 L 50 100 L 90 10 M 100 10 V 100 M 110 100 L 110 10 L 160 100 L 160 10 M 220 10 C 220 10, 100 50, 220 100 M 230 10 L 270 10 M 230 10 V 100 L 270 100 M 230 50 L 250 50 M 280 10 L 280 100 M 280 10 L 320 100 L 320 10 M 330 10 L 380 10 M 355 10 L 355 100" fill="transparent" stroke="black"/>
+    </svg>
+
 
 
     <h1>Animer des formes</h1>
 
     <h2>On click</h2>
 
+    <svg width="100" height="200" id="rect-click">
+      <rect x="10" y="10" width="50" height="30" stroke="black" fill="black" stroke-width="5"/>
+    </svg>
+
     <h2>On hover</h2>
+
+    <svg width="200" height="200" id="donut-hover">
+      <circle cx="100" cy="100" r="60" stroke="red" fill="transparent" stroke-width="5" />
+      <circle cx="100" cy="100" r="30" stroke="red" fill="transparent" stroke-width="5" />
+
+    </svg>
+
 
     <h2>Prenez la première lettre de votre prénom que vous avez créée ci-dessus. Faite bouger une forme de votre choix le long de la lettre</h2>
 
+    <svg width="100">
+      <path d="M10 10 L 50 100 L 90 10" fill="transparent" stroke="black" id="motionPath"/>
+      <circle cx="" cy="" r="5" stroke="black" fill="black">
+        <animateMotion dur="6s" repeatCount="indefinite">
+          <mpath xlink:href="#motionPath"/>
+        </animateMotion>
+      </circle>
+    </svg>
 
-  </body>
+
+
+
+
+</body>
+
+<script>
+    function onEach(selector, callback) {
+        document.querySelectorAll(selector).forEach(callback);
+    }
+
+    function on(selector, event, callback) {
+        onEach(selector, ele => ele.addEventListener(event, callback));
+    }
+
+    on("#rect-click", "click", async(event) => {
+        const element = event.currentTarget;
+
+        let rect = element.querySelector("rect");
+        let color = rect.getAttribute("fill");
+        rect.setAttribute("fill", color == "black" ? "red" : "black");
+    });
+
+
+
+    on("#donut-hover", "mouseover", async(event) => {
+        const element = event.currentTarget;
+        let exterior = element.querySelectorAll("circle")[0];
+        exterior.setAttribute("r", 80);
+    });
+
+    on("#donut-hover", "mouseleave", async(event) => {
+        const element = event.currentTarget;
+        let exterior = element.querySelectorAll("circle")[0];
+        exterior.setAttribute("r", 60);
+    });
+</script>
+
 </html>
