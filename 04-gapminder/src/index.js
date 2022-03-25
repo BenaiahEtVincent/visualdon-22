@@ -119,7 +119,7 @@ var z = d3.scaleLinear()
 
 
 function displayDot(year) {
-    //removeAllDot();
+    removeAllDot();
 
     // Add dots
     svg.append('g')
@@ -152,7 +152,7 @@ function displayDot(year) {
 displayDot(2021)
 
 
-/* let year = 1800;
+let year = 1800;
 
 document.getElementById("yearRange").min = year;
 document.getElementById("yearRange").max = 2050;
@@ -200,7 +200,7 @@ runInterval()
 
 function removeAllDot() {
     svg.select("#groupDot").remove()
-} */
+}
 
 
 function cleanData(data) {
