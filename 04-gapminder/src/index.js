@@ -118,6 +118,7 @@ var z = d3.scaleLinear()
     .range([1, 40]);
 
 
+
 function displayDot(year) {
     removeAllDot();
 
@@ -126,26 +127,42 @@ function displayDot(year) {
         .attr("id", "groupDot")
         .selectAll("dot")
         .data(datas)
-        .enter()
-        .append("circle")
-        .attr("id", function(d) {
-            return d.name
-        })
-        .attr("cx", function(d) {
-            return x(cleanData(d.pib[year]));
-        })
-        .attr("cy", function(d) {
-            return y(d.life[year]);
-        })
-        .attr("r", function(d) {
-            return z(cleanData(d.population[year]));
-        })
-        .style("fill", "#69b3a2")
-        .style("opacity", "0.7")
-        .attr("stroke", "black")
-        .on("mouseover", function(d) {
-            d3.select("#tooltip").text(this.id);
-        })
+        .join(
+            enter => enter.append("circle")
+            .attr("id", function(d) {
+                return d.name
+            })
+
+            .attr("cx", function(d) {
+                return x(cleanData(d.pib[year]));
+            })
+            .attr("cy", function(d) {
+                return y(d.life[year]);
+            })
+            .attr("r", function(d) {
+                return z(cleanData(d.population[year]));
+            })
+            .style("fill", "#69b3a2")
+            .style("opacity", "0.7")
+            .attr("stroke", "black"),
+
+
+
+            update => update
+            .attr("cx", function(d) {
+                return x(cleanData(d.pib[year]));
+            })
+            .attr("cy", function(d) {
+                return y(d.life[year]);
+            })
+            .attr("r", function(d) {
+                return z(cleanData(d.population[year]));
+            })
+        )
+        .transition(d3.transition()
+            .duration(500)
+            .ease(d3.easeLinear))
+
 
 }
 
