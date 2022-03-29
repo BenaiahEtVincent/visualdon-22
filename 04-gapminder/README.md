@@ -36,3 +36,5 @@ Trouver des données géographiques en format *.geojson*, et visualiser l'espér
 ## Animation (délai 22 avril)
 Animer les données selon les années. En bref : faite le premier graphique, mais pour chaque année! Cela doit ressembler à la visualisation proposée par [Gapminder](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1).
 
+
+
