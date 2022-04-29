@@ -11,10 +11,14 @@
   "author": "Noemi Romano",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "babel-polyfill": "^6.26.0",
+    "dom-parser": "^0.1.6",
+    "himalaya": "^1.1.0",
     "isomorphic-fetch": "^3.0.0",
     "jsdom": "^19.0.0",
-    "puppeteer": "^13.5.2"
+    "puppeteer": "^13.7.0",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
